@@ -24,9 +24,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.includesecurity.safeurl
-
 import java.net._
 import java.util.regex.Pattern
 import java.io.ByteArrayOutputStream
@@ -92,7 +90,7 @@ object SafeURL {
     * @param host hostname or IP address to resolve
     * @return an array of IP addresses the hostname/IP resolves to
     */
-  private def resolve(host: String, cfg: Configuration = defaultConfiguration): Array[String] = {
+  def resolve(host: String, cfg: Configuration): Array[String] = {
     var hosts = InetAddress.getAllByName(host)
     if (!cfg.supportIPv6) {
       val v4Hosts = hosts filter (_.isInstanceOf[Inet4Address])
@@ -114,7 +112,7 @@ object SafeURL {
     * @param cidrString the subnet in CIDR notation
     * @return true if the IP lies within the subnet, false otherwise
     */
-  private def cidrMatch(ipString: String, cidrString: String): Boolean = {
+  def cidrMatch(ipString: String, cidrString: String): Boolean = {
     val parts = cidrString split '/'
 
     val ip = InetAddress.getByName(ipString).getAddress
