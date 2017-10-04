@@ -53,6 +53,9 @@ class Configuration {
   /** Do secure redirects, revalidate each redirect location first. */
   var secureRedirects: Boolean = true
 
+  /** Support IPv6, disabled by default since the default blacklist relies on NAT for security */
+  var supportIPv6: Boolean = false
+
   /** The maximum number of redirects SaveCurl will follow. */
   var maxRedirects: Int = 20
 
@@ -84,6 +87,17 @@ object Configuration {
                          "203.0.113.0/24"  ::
                          "224.0.0.0/4"     ::
                          "240.0.0.0/4"     ::
+                         "::1/128"         ::
+                         "64:ff9b::/96"    ::
+                         "100::/64"        ::
+                         "2001::/32"       ::
+                         "2001:10::/28"    ::
+                         "2001:20::/28"    ::
+                         "2001:db8::/32"   ::
+                         "2002::/16"       ::
+                         "fc00::/7"        ::
+                         "fe80::/10"       ::
+                         "ff00::/8"        ::
                          Nil
 
     lists.port.whitelist = "80" :: "8080" :: "443" :: Nil
